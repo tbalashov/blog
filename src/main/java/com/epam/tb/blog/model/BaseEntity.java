@@ -3,39 +3,28 @@ package com.epam.tb.blog.model;
 import java.util.UUID;
 
 public abstract class BaseEntity {
+    final UUID uuid;
     Integer id;
-    UUID uuid;
     boolean deleted;
+
+    public BaseEntity() {
+        uuid = UUID.randomUUID();
+    }
+
+    public BaseEntity(UUID uuid) {
+        this.uuid = uuid;
+    }
 
     public boolean isDeleted() {
         return deleted;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
     }
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        User other = (User) obj;
-        return uuid.equals(other.uuid);
-    }
-
-    public BaseEntity() {
-        uuid = UUID.randomUUID();
-    }
-
-    @Override
-    public int hashCode() {
-        return uuid.hashCode();
+    public UUID getUuid() {
+        return uuid;
     }
 
     public Integer getId() {
@@ -44,5 +33,20 @@ public abstract class BaseEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BaseEntity)) return false;
+
+        BaseEntity that = (BaseEntity) o;
+
+        return uuid.equals(that.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return uuid.hashCode();
     }
 }

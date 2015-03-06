@@ -1,12 +1,21 @@
 package com.epam.tb.blog.model;
 
-public class Role extends BaseEntity {
-    public static final Role ADMIN = new Role("admin");
-    public static final Role AUTHOR = new Role("author");
-    public static final Role GUEST = new Role("guest");
-    String title;
+import java.util.UUID;
 
-    public Role(String title) {
-        this.title = title;
+public class Role extends BaseEntity {
+    String name;
+
+    public Role() {}
+
+    public Role(UUID uuid) {
+        super(uuid);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

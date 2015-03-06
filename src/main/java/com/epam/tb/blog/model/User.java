@@ -2,26 +2,23 @@ package com.epam.tb.blog.model;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class User extends BaseEntity implements Cloneable {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private Role role;
-    private Date registerDate;
-    private Date birthday;
-    private List<Post> posts;
-    private List<Comment> comments;
+    String firstName;
+    String lastName;
+    String email;
+    String password;
+    Role role;
+    Date registerDate;
+    Date birthday;
+    List<Post> posts;
+    List<Comment> comments;
 
+    public User() {}
 
-    @Override
-    public User clone() {
-        try {
-            return (User) super.clone();
-        } catch (CloneNotSupportedException e) {
-            return null;
-        }
+    public User(UUID uuid) {
+        super(uuid);
     }
 
     public String getFirstName() {
@@ -30,21 +27,6 @@ public class User extends BaseEntity implements Cloneable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + getId() + '\'' +
-                ", uuid='" + getUuid() + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                ", registerDate=" + registerDate +
-                ", birthday=" + birthday +
-                '}';
     }
 
     public String getLastName() {
@@ -95,19 +77,4 @@ public class User extends BaseEntity implements Cloneable {
         this.birthday = birthday;
     }
 
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 }
